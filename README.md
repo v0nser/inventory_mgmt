@@ -60,9 +60,3 @@ PORT=5000
 backend/    # Express API, MongoDB models, routes, middleware
 frontend/   # React app (Vite), TailwindCSS, pages, components
 ```
-
-## Screenshots
-> Add your own screenshots here!
-
-## License
-MIT 
