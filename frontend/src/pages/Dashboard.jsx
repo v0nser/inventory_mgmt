@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
@@ -12,7 +12,7 @@ export default function Dashboard({ role }) {
     const fetchItems = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('/api/items', {
+        const res = await api.get('/api/items', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setItems(res.data);

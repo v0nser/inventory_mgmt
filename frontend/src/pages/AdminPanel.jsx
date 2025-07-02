@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
@@ -14,7 +14,7 @@ export default function AdminPanel() {
 
   const fetchItems = async () => {
     try {
-      const res = await axios.get('/api/items', {
+      const res = await api.get('/api/items', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setItems(res.data);
@@ -36,11 +36,11 @@ export default function AdminPanel() {
     e.preventDefault();
     try {
       if (editId) {
-        await axios.put(`/api/items/${editId}`, form, {
+        await api.put(`/api/items/${editId}`, form, {
           headers: { Authorization: `Bearer ${token}` }
         });
       } else {
-        await axios.post('/api/items', form, {
+        await api.post('/api/items', form, {
           headers: { Authorization: `Bearer ${token}` }
         });
       }
@@ -59,7 +59,7 @@ export default function AdminPanel() {
 
   const handleDelete = async id => {
     try {
-      await axios.delete(`/api/items/${id}`, {
+      await api.delete(`/api/items/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchItems();
